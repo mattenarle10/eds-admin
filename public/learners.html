@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learners - Elderly Digital Steps</title>
+    <link rel="stylesheet" href="styles/learnerstyles.css">
+</head>
+
+<body>
+    <header class="admin-header">
+        <div class="logo-container">
+            <img src="img/logo_eds.png" alt="Logo" class="logo">
+            <h1 class="site-title">Elderly Digital Steps</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="bookings.html" class="nav-link">Bookings</a>
+            <a href="learners.html" class="nav-link">Learners</a>
+            <a href="tutors.html" class="nav-link">Tutors</a>
+        </nav>
+    </header>
+
+    <div class="main-body">
+        <h2>Learners</h2>
+
+        <section class="learners-container" id="learners-container">
+            <!-- Learner cards will be inserted here -->
+        </section>
+    </div>
+
+    <footer class="admin-footer">
+        <p>&copy; 2024 Elderly Digital Steps. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch learners data
+        fetch('../admin_get_learner.php')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('learners-container');
+                data.forEach(learner => {
+                    const learnerCard = document.createElement('div');
+                    learnerCard.classList.add('learner-card');
+
+                    // Add learner data to card
+                    learnerCard.innerHTML = `
+                        <div class="learner-card-header">
+                            <h3>${learner.username}</h3>
+                        </div>
+                        <div class="learner-card-body">
+                            <p><strong>Email:</strong> ${learner.email}</p>
+                            <p><strong>Role:</strong> ${learner.role}</p>
+                        </div>
+                        <div class="learner-card-actions">
+                            <button class="edit-btn" data-id="${learner.id}">Edit</button>
+                            <button class="delete-btn" data-id="${learner.id}">Delete</button>
+                        </div>
+                    `;
+                    container.appendChild(learnerCard);
+                });
+
+                // Edit functionality
+                const editButtons = document.querySelectorAll('.edit-btn');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const learnerId = this.getAttribute('data-id');
+                        const newUsername = prompt("Enter new username:");
+                        const newEmail = prompt("Enter new email:");
+
+                        if (newUsername && newEmail) {
+                            // Send edit request
+                            fetch('../admin_edit_learner.php', {
+                                method: 'POST',
+                                body: new URLSearchParams({
+                                    id: learnerId,
+                                    username: newUsername,
+                                    email: newEmail
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.success || data.error);
+                                location.reload();  // Reload to reflect changes
+                            });
+                        }
+                    });
+                });
+
+                // Delete functionality
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const learnerId = this.getAttribute('data-id');
+
+                        // Show a confirmation dialog
+                        const confirmDelete = confirm("Are you sure you want to delete this learner?");
+                        if (confirmDelete) {
+                            // Send delete request
+                            fetch(`../admin_delete_learner.php?id=${learnerId}`, {
+                                method: 'GET'
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.success || data.error);
+                                if (data.success) {
+                                    this.closest('.learner-card').remove();  // Remove the learner card from DOM
+                                }
+                            });
+                        }
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching learners data:', error);
+            });
+    </script>
+
+</body>
+
+</html>

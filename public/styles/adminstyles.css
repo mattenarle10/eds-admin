@@ -1,0 +1,252 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+.admin-header {
+    background-color: #006049;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.site-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
+.nav-link {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Main Body */
+.main-body {
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the content */
+    padding: 0 20px; /* Add side padding */
+}
+
+h2 {
+    color: #006049;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+
+/* Footer */
+.admin-footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #006049;
+    color: white;
+    margin-top: 40px;
+   
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Main Body */
+.main-body {
+    max-width: 1200px;
+    margin: 0 auto; /* Center the content */
+    padding: 20px; /* Add padding around content */
+}
+
+/* Section styles */
+section {
+    margin-bottom: 40px; /* Add space between sections */
+}
+
+/* Section titles (h3) */
+section h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #006049; /* Set a color for titles */
+    margin-bottom: 15px; /* Space between title and content */
+    border-bottom: 2px solid #006049; /* Underline effect */
+    padding-bottom: 5px; /* Padding under the title */
+}
+
+/* Analytics Section */
+.analytics-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the section */
+}
+
+/* Quiz Progress Section */
+.quiz-progress-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the section */
+}
+
+/* Quiz Scores Section */
+.quiz-scores-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the section */
+}
+
+/* Overall Padding and Spacing Adjustments */
+.analytics-container, .quiz-progress-container, .quiz-scores-container {
+    margin-top: 20px; /* Add space between section title and content */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items in each container */
+    justify-content: center;
+}
+
+
+/*ANALYTICS*/
+.analytics-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.analytics-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.analytics-card:hover {
+    transform: translateY(-5px);
+}
+
+.analytics-card h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.analytics-card p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.quiz-progress-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.quiz-progress-table th,
+.quiz-progress-table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.quiz-progress-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+.quiz-progress-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.quiz-progress-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.quiz-progress-table td {
+    color: #555;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+
+
+.quiz-scores-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.quiz-scores-table th,
+.quiz-scores-table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.quiz-scores-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+.quiz-scores-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.quiz-scores-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.quiz-scores-table td {
+    color: #555;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}

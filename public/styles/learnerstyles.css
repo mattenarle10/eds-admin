@@ -1,0 +1,163 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Makes sure the body takes at least the full height of the screen */
+}
+
+/* Header */
+.admin-header {
+    background-color: #006049;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.site-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
+.nav-link {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Main body */
+.main-body {
+    padding: 40px;
+    background-color: #fff;
+}
+
+h2 {
+    color: #006049;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Learners Container */
+.learners-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+/* Learner Card */
+.learner-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learner-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.learner-card-header h3 {
+    color: #006049;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.learner-card-body p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.learner-card-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Edit Button */
+.edit-btn {
+    background-color: #ff7f0e;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #e67e00;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Footer */
+.admin-footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #006049;
+    color: white;
+    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .learners-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .learner-card {
+        width: 90%;
+    }
+}

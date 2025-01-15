@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUTORS - Elderly Digital Steps</title>
+    <link rel="stylesheet" href="styles/tutorstyles.css">
+   
+</head>
+
+<body>
+    <header class="admin-header">
+        <div class="logo-container">
+            <img src="img/logo_eds.png" alt="Logo" class="logo">
+            <h1 class="site-title">Elderly Digital Steps</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="bookings.html" class="nav-link">Bookings</a>
+            <a href="learners.html" class="nav-link">Learners</a>
+            <a href="tutors.html" class="nav-link">Tutors</a>
+        </nav>
+    </header>
+
+    <div class="main-body">
+        <h2>Tutors</h2>
+
+        <section class="tutors-section">
+            <div class="tutors-container" id="tutors-container">
+                <!-- Tutors and their details will be loaded here dynamically -->
+            </div>
+        </section>
+    </div>
+
+    <footer class="admin-footer">
+        <p>&copy; 2024 Elderly Digital Steps. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tutorsContainer = document.getElementById('tutors-container');
+
+            // Fetch tutor details
+            fetch('../admin_get_tutor_details.php')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(tutor => {
+                        const card = document.createElement('div');
+                        card.classList.add('tutor-card');
+
+                        card.innerHTML = `
+                            <h3>${tutor.username}</h3>
+                            <p><strong>Email:</strong> ${tutor.email}</p>
+                            <p><strong>Bio:</strong> ${tutor.bio || 'N/A'}</p>
+                            <p><strong>Expertise:</strong> ${tutor.expertise || 'N/A'}</p>
+                            <p class="availability ${tutor.availability === 'not available' ? 'not-available' : ''}">
+                                ${tutor.availability || 'N/A'}
+                            </p>
+                            <button class="delete-btn" data-id="${tutor.user_id}">Delete</button>
+                        `;
+
+                        tutorsContainer.appendChild(card);
+                    });
+
+                    // Attach event listeners to delete buttons
+                    document.querySelectorAll('.delete-btn').forEach(button => {
+                        button.addEventListener('click', () => {
+                            const tutorId = button.getAttribute('data-id');
+
+                            if (confirm('Are you sure you want to delete this tutor?')) {
+                                fetch('../delete_tutor.php', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                    body: `tutor_id=${tutorId}`
+                                })
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        if (result.success) {
+                                            alert(result.message);
+                                            button.parentElement.remove(); // Remove the card from the DOM
+                                        } else {
+                                            alert(result.message);
+                                        }
+                                    })
+                                    .catch(error => console.error('Error deleting tutor:', error));
+                            }
+                        });
+                    });
+                })
+                .catch(error => console.error('Error fetching tutor details:', error));
+        });
+    </script>
+</body>
+
+</html>

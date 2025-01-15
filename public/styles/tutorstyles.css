@@ -1,0 +1,138 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Makes sure the body takes at least the full height of the screen */
+}
+
+h2 {
+    color: #006049;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Header */
+.admin-header {
+    background-color: #006049;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.site-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
+.nav-link {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+
+.main-body {
+    padding: 40px 20px;
+}
+
+
+/* Footer */
+.admin-footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #006049;
+    color: white;
+    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Styles for big tutor cards */
+.tutors-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.tutor-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tutor-card:hover {
+    transform: translateY(-5px);
+}
+
+.tutor-card h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.tutor-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.tutor-card .availability {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+.tutor-card .availability.not-available {
+    color: red;
+}
+.delete-btn {
+    margin-top: 15px;
+    background-color: #ff4c4c;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #ff1a1a;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings - Elderly Digital Steps</title>
+    <link rel="stylesheet" href="styles/bookingstyles.css">
+</head>
+
+<body>
+    <header class="admin-header">
+        <div class="logo-container">
+            <img src="img/logo_eds.png" alt="Logo" class="logo">
+            <h1 class="site-title">Elderly Digital Steps</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="bookings.html" class="nav-link">Bookings</a>
+            <a href="learners.html" class="nav-link">Learners</a>
+            <a href="tutors.html" class="nav-link">Tutors</a>
+    </header>
+
+    <div class="main-body">
+        <h2>List of Bookings</h2>
+
+        <section class="bookings-section">
+            <div class="bookings-container" id="bookings-container">
+                <!--bookings and their details in a card-->
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="admin-footer">
+        <p>&copy; 2024 Elderly Digital Steps. All Rights Reserved.</p>
+    </footer>
+</body>
+
+<script>
+    fetch('../admin_get_bookings.php')
+    .then(response => response.json()) // Expecting JSON response
+    .then(data => {
+        const bookingsContainer = document.getElementById('bookings-container');
+        
+        data.forEach(booking => {
+            // Create a card element for each booking
+            const bookingCard = document.createElement('div');
+            bookingCard.classList.add('booking-card');
+
+            // Determine the status class based on the booking status
+            let statusClass = '';
+            if (booking.status === 'confirmed') {
+                statusClass = 'confirmed';
+            } else if (booking.status === 'pending') {
+                statusClass = 'pending';
+            } else if (booking.status === 'rejected') {
+                statusClass = 'rejected';
+            }
+
+            // Add content to the card
+            bookingCard.innerHTML = `
+                <h3>Booking ID: ${booking.id}</h3>
+                <p><strong>Learner:</strong> ${booking.learner_name}</p>
+                <p><strong>Tutor:</strong> ${booking.tutor_name}</p>
+                <p><strong>Status:</strong> <span class="status ${statusClass}">${booking.status}</span></p>
+                <p><strong>Booking Date:</strong> ${booking.booking_date}</p>
+                <button class="delete-btn" data-id="${booking.id}">Delete</button>
+            `;
+
+            // Append the card to the container
+            bookingsContainer.appendChild(bookingCard);
+        });
+
+        // Add event listener for the delete buttons
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const bookingId = this.getAttribute('data-id');
+
+                // Show a confirmation dialog
+                const confirmDelete = confirm("Are you sure you want to delete this booking?");
+
+                if (confirmDelete) {
+                    // Send a DELETE request to delete the booking
+                    fetch(`../admin_delete_booking.php?id=${bookingId}`, {
+                        method: 'GET', // You can use POST or DELETE depending on your API
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Booking deleted successfully');
+                                // Remove the booking card from the DOM
+                                this.closest('.booking-card').remove();
+                            } else {
+                                alert('Error deleting booking');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Failed to delete booking');
+                        });
+                } else {
+                    console.log('Booking deletion canceled');
+                }
+            });
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching booking data:', error);
+    });
+
+
+</script>
+
+</html>

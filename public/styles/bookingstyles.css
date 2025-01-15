@@ -1,0 +1,167 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Makes sure the body takes at least the full height of the screen */
+}
+
+/* Header */
+.admin-header {
+    background-color: #006049;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+h2 {
+    color: #006049;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.site-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
+.nav-link {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.admin-footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #006049;
+    color: white;
+    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Bookings Section */
+.main-body {
+    padding: 40px 20px;
+}
+
+.bookings-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bookings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Booking Card Design */
+.booking-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.booking-card h3 {
+    font-size: 20px;
+    color: #006049;
+    margin-bottom: 10px;
+}
+
+.booking-card p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.booking-card strong {
+    font-weight: bold;
+}
+
+/* Styling for the Status */
+.booking-card .status {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+
+/* Confirmed status - Green */
+.booking-card .confirmed {
+    color: #28a745; /* Green */
+}
+
+/* Pending status - Orange */
+.booking-card .pending {
+    color: #ffc107; /* Orange */
+}
+
+/* Rejected status - Red */
+.booking-card .rejected {
+    color: #dc3545; /* Red */
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
